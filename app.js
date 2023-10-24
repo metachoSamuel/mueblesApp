@@ -5,7 +5,11 @@ let path = require('path')
 
 let connect = require('./src/conexion/index');
 
+
 let persona = require('./src/rutas/PersonaRuta');
+let contacto = require('./src/rutas/ContactoRuta');
+let proyecto = require('./src/rutas/ProyectoRuta');
+
 
 let app = express();
 
@@ -24,9 +28,11 @@ app.use(function (req,res, next){
     next();
 });
 
-// RUTAS
 
+// RUTAS
 app.use('/persona', persona());
+app.use('/contacto', contacto());
+app.use('/proyecto', proyecto());
 
 http.createServer(app).listen(app.get('port'), function (){
     console.log('Servidor Express esuchando en el puerto ' + app.get('port'));

@@ -1,0 +1,7 @@
+.footer {
+  margin-top: auto;
+  background: linear-gradient(to right, #2e502c, #1dcf64);
+  color: #fff; /* Color del texto del footer */
+  padding: 20px 0;
+  text-align: center;
+}

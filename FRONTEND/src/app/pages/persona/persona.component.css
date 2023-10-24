@@ -6,28 +6,28 @@ table{
 }
 
 thead{
-  background-color: #7544c3;
+  background-color: #ffffff;
 }
 
 tbody th{
-  border-color: rgba(0, 20, 87);
+  border-color: rgb(255, 255, 255);
   font-weight: lighter;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
 tbody tr{
   width: 50px;
-  background-color: #212529;
+  background-color: #ffffff;
 }
 select{
   text-transform: uppercase;
   margin-left: 5px;
   width: 280px;
-  border-color: rgba(0, 20, 87);
+  border-color: rgb(0, 0, 0);
   border-radius: 5px;
 }
 button{
   padding: 7px;
-  background-color: #550c5b;
+  background-color: #2e502c;
   color: #fff;
   border-style: none;
   border-radius: 100px;
@@ -40,7 +40,7 @@ input {
   text-transform: uppercase;
   margin-left: 5px;
   width: 280px;
-  border-color: rgba(0, 20, 87, 0.7);
+  border-color: rgb(0, 0, 0);
   border-radius: 5px;
 }
 h1,
@@ -54,6 +54,6 @@ h1 {
 }
 
 .lista, .buscar,.crear,.actualizar{
-  background-color: #d9b3f3;
+  background-color: #acd17f;
   border-radius: 50px;
 }

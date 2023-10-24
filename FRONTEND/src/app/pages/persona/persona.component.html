@@ -1,3 +1,4 @@
+
 <div class="lista">
   <h1>Lista Personas</h1>
 
@@ -14,16 +15,13 @@
       <th>{{ TablaPersona[1] }}</th>
       <th>{{ TablaPersona[2] }}</th>
       <th>{{ TablaPersona[3] }}</th>
-      <th>{{ TablaPersona[4] }}</th>
       </thead>
       <tbody>
-      <tr *ngFor="let persona of Personas">
-        <th>{{ persona.id_persona }}</th>
-        <th>{{ persona.apellido_1 }} {{ persona.apellido_2 }}</th>
-        <th>{{ persona.nombre_1 }} {{ persona.nombre_2 }}</th>
-        <th>{{ persona.no_documento }}</th>
-        <th *ngIf="persona.tipo_persona == 'e'">Estudiante</th>
-        <th *ngIf="persona.tipo_persona == 'd'">Docente</th>
+      <tr *ngFor="let personal of Personas">
+        <th>{{ personal.id_persona }}</th>
+        <th>{{ personal.apellido_1 }} {{ personal.apellido_2 }}</th>
+        <th>{{ personal.nombre_1 }} {{ personal.nombre_2 }}</th>
+        <th>{{ personal.nu_documento }}</th>
       </tr>
       </tbody>
     </table>
@@ -32,7 +30,6 @@
 
 <br /><br />
 
-<!-- para mostrar el un solo Tipo de Documento -->
 <div class="buscar">
   <h2 style="margin-left: 30%">Mostramos la Persona seleccionada:</h2>
 
@@ -72,7 +69,6 @@
       <th class="b">{{ TabBusPersona[1] }}</th>
       <th class="b">{{ TabBusPersona[2] }}</th>
       <th class="b">{{ TabBusPersona[3] }}</th>
-      <th class="b">{{ TabBusPersona[4] }}</th>
       </thead>
 
       <tbody class="Filb">
@@ -81,8 +77,6 @@
         <th>{{ persona.apellido_1 }} {{ persona.apellido_2 }}</th>
         <th>{{ persona.nombre_1 }} {{ persona.nombre_2 }}</th>
         <th>{{ persona.no_documento }}</th>
-        <th *ngIf="persona.tipo_persona == 'e'">Estudiante</th>
-        <th *ngIf="persona.tipo_persona == 'd'">Docente</th>
       </tr>
       </tbody>
     </table>
@@ -93,34 +87,68 @@
 
 <div class="crear">
   <br />
-  <button
-    (click)="mostrarHtml(1)"
-    class="btn btn-dark"
-    style="margin-left: 40%"
-  >
+  <button (click)="mostrarHtml(1)" class="btn btn-dark" style="margin-left: 40%">
     Crear Persona
   </button>
   <br />
   <div class="container-fluid" style="margin-left: 30%">
     <br />
     <form *ngIf="mostrarCrear" [formGroup]="formularioCrear">
-      <label for="">Ingrese Primer nombre</label>
+      <label>Ingrese Primer nombre</label>
       <input type="text" formControlName="nombre_1" />
       <br /><br />
-      <label for="">Ingrese Primer nombre</label>
+      <label>Ingrese Segundo nombre</label>
       <input type="text" formControlName="nombre_2" />
       <br /><br />
-      <label for="">Ingrese Primer nombre</label>
+      <label>Ingrese Primer Apellido</label>
       <input type="text" formControlName="apellido_1" />
       <br /><br />
-      <label for="">Ingrese Primer nombre</label>
+      <label>Ingrese Segundo Apellido</label>
       <input type="text" formControlName="apellido_2" />
       <br /><br />
-      <label for="">Ingrese Primer nombre</label>
-      <input type="text" formControlName="no_documento" />
+      <!-- Agregado: Combo Tipo de Documento -->
+      <label>Seleccione Tipo de Documento</label>
+      <select formControlName="id_tipo_doc">
+        <option *ngFor="let tipoDoc of comboListaDoc" [value]="tipoDoc.id_tipo_doc">
+          {{ tipoDoc.documento }}
+        </option>
+      </select>
       <br /><br />
-      <label for="">Ingrese Primer nombre</label>
-      <input type="text" formControlName="tipo_persona" />
+      <label>Ingrese Numero de documento</label>
+      <input type="text" formControlName="nu_documento" />
+      <br /><br />
+      <label>Ingrese Sexo</label>
+      <input type="text" formControlName="sexo" />
+      <br /><br />
+      <label>Ingrese Fecha nacimiento</label>
+      <input type="date" formControlName="fecha_nacimiento" />
+      <br /><br />
+      <label>Ingrese Cargo</label>
+      <input type="text" formControlName="cargo_persona" />
+      <br /><br />
+      <label>Ingrese eps</label>
+      <!-- Agregado: Combo EPS -->
+      <select formControlName="id_eps_persona">
+        <option *ngFor="let eps of comboListaEps" [value]="eps.id_eps">
+          {{ eps.nombre_eps }}
+        </option>
+      </select>
+      <br /><br />
+      <label>Ingrese arl</label>
+      <!-- Agregado: Combo ARL -->
+      <select formControlName="id_arl_persona">
+        <option *ngFor="let arl of comboListaArl" [value]="arl.id_arl">
+          {{ arl.nombre_arl }}
+        </option>
+      </select>
+      <br /><br />
+      <label>Ingrese Pension</label>
+      <!-- Agregado: Combo Pension -->
+      <select formControlName="id_pension_persona">
+        <option *ngFor="let pension of comboListaPension" [value]="pension.id_pension">
+          {{ pension.nombre_pension }}
+        </option>
+      </select>
       <br /><br />
       <button
         [disabled]="formularioCrear.invalid"
@@ -142,6 +170,7 @@
     </form>
   </div>
 </div>
+
 
 <br /><br />
 
@@ -174,23 +203,20 @@
         </option>
       </select>
       <br /><br />
-      <label for="">Ingrese Primer nombre</label>
+      <label >Ingrese Primer nombre</label>
       <input type="text" formControlName="nombre_1" />
       <br /><br />
-      <label for="">Ingrese Primer nombre</label>
+      <label >Ingrese Segundo nombre</label>
       <input type="text" formControlName="nombre_2" />
       <br /><br />
-      <label for="">Ingrese Primer nombre</label>
+      <label >Ingrese Primer apellido</label>
       <input type="text" formControlName="apellido_1" />
       <br /><br />
-      <label for="">Ingrese Primer nombre</label>
+      <label >Ingrese Segundo apellido</label>
       <input type="text" formControlName="apellido_2" />
       <br /><br />
-      <label for="">Ingrese Primer nombre</label>
+      <label >Ingrese Numero de documento</label>
       <input type="text" formControlName="no_documento" />
-      <br /><br />
-      <label for="">Ingrese Primer nombre</label>
-      <input type="text" formControlName="tipo_persona" />
       <br /><br />
       <button
         [disabled]="formularioActualizar.invalid"
@@ -205,3 +231,4 @@
     </form>
   </div>
 </div>
+

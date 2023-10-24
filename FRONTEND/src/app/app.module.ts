@@ -7,7 +7,12 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PersonaComponent } from './pages/persona/persona.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+
+import { PersonaService } from "./services/persona.service";
+import {HttpClientModule} from "@angular/common/http";
+import {RouterModule} from "@angular/router";
+import {HttpModule} from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -20,9 +25,14 @@ import {ReactiveFormsModule} from "@angular/forms";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule,
+    RouterModule,
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [PersonaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

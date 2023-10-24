@@ -10,6 +10,7 @@ let persona = require('./src/rutas/PersonaRuta');
 let contacto = require('./src/rutas/ContactoRuta');
 let proyecto = require('./src/rutas/ProyectoRuta');
 let material = require('./src/rutas/MaterialRuta');
+let produccion = require('./src/rutas/ProduccionRuta');
 
 
 let app = express();
@@ -35,6 +36,7 @@ app.use('/persona', persona());
 app.use('/contacto', contacto());
 app.use('/proyecto', proyecto());
 app.use('/material', material());
+app.use('/produccion', produccion());
 
 http.createServer(app).listen(app.get('port'), function (){
     console.log('Servidor Express esuchando en el puerto ' + app.get('port'));

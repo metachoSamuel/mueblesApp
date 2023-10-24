@@ -1,0 +1,201 @@
+
+<div class="lista">
+  <h1>Lista Proyectos</h1>
+
+  <form (ngSubmit)="consultarProyecto(1)" [formGroup]="ListaProyectos">
+    <button type="submit" style="margin-left: 30%">Mostrar Proyectos</button>
+    <button (click)="limpiarLista()" style="margin-left: 30px">Limpiar</button>
+
+    <br /><br />
+
+    <h2 style="margin-left: 10%">{{ TituloProyectos }}</h2>
+    <table>
+      <thead>
+      <th>{{ TablaProyecto[0] }}</th>
+      <th>{{ TablaProyecto[1] }}</th>
+      <th>{{ TablaProyecto[2] }}</th>
+      <th>{{ TablaProyecto[3] }}</th>
+      <th>{{ TablaProyecto[4] }}</th>
+      <th>{{ TablaProyecto[5] }}</th>
+      <th>{{ TablaProyecto[6] }}</th>
+      <th>{{ TablaProyecto[7] }}</th>
+      <th>{{ TablaProyecto[8] }}</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let proyecto of Proyectos">
+        <th>{{ proyecto.id_proyecto }}</th>
+        <th>{{ proyecto.descrip_proyecto }}</th>
+        <th>{{ proyecto.caracteristica_material }}</th>
+        <th>{{ proyecto.fecha_produccion }}</th>
+        <th>{{ proyecto.horas_trabajo }}</th>
+        <th>{{ proyecto.costos_produccion }}</th>
+        <th>{{ proyecto.descrip_produccion }}</th>
+        <th>{{ proyecto.cantidad_produccion }}</th>
+        <th>{{ proyecto.tipo_material_ct }}</th>
+      </tr>
+      </tbody>
+    </table>
+  </form>
+</div>
+
+<br /><br />
+
+<div class="buscar">
+  <h2 style="margin-left: 30%">Mostramos la Proyecto seleccionada:</h2>
+
+  <form
+    (ngSubmit)="buscarProyecto()"
+    [formGroup]="filtrarProyectos"
+    style="margin-left: 30%"
+  >
+    Seleccione Proyecto
+    <select
+      class="dropdown"
+      formControlName="combofiltro"
+      (click)="consultarProyecto(2)"
+    >
+      <option value="value1">Proyecto a buscar</option>
+      <option
+        *ngFor="let Proyecto of comboListaProyecto"
+        [value]="Proyecto.id_proyecto"
+      >
+        {{ Proyecto.id_proyecto }} -
+        {{ Proyecto.descrip_proyecto }}
+      </option>
+    </select>
+
+    <br /><br />
+
+    <button type="submit" style="margin-right: 30px">Buscar Proyecto</button>
+    <button (click)="limpiarLista()" style="margin-right: 30px">Limpiar</button>
+  </form>
+
+  <ul>
+    <h2>{{ TituloProyecto }}</h2>
+
+    <table class="tabBuscar">
+      <thead class="Colb">
+      <th class="b">{{ TabBusProyecto[0] }}</th>
+      <th class="b">{{ TabBusProyecto[1] }}</th>
+      <th class="b">{{ TabBusProyecto[2] }}</th>
+      <th class="b">{{ TabBusProyecto[3] }}</th>
+      <th class="b">{{ TabBusProyecto[4] }}</th>
+      <th class="b">{{ TabBusProyecto[5] }}</th>
+      <th class="b">{{ TabBusProyecto[6] }}</th>
+      <th class="b">{{ TabBusProyecto[7] }}</th>
+      <th class="b">{{ TabBusProyecto[8] }}</th>
+      </thead>
+
+      <tbody class="Filb">
+      <tr class="b" *ngFor="let proyecto of MiProyecto">
+        <th>{{ proyecto.id_proyecto }}</th>
+        <th>{{ proyecto.descrip_proyecto }}</th>
+        <th>{{ proyecto.caracteristica_material }}</th>
+        <th>{{ proyecto.fecha_produccion }}</th>
+        <th>{{ proyecto.horas_trabajo }}</th>
+        <th>{{ proyecto.costos_produccion }}</th>
+        <th>{{ proyecto.descrip_produccion }}</th>
+        <th>{{ proyecto.cantidad_produccion }}</th>
+        <th>{{ proyecto.tipo_material_ct }}</th>
+      </tr>
+      </tbody>
+    </table>
+  </ul>
+</div>
+
+<br /><br />
+
+<div class="crear">
+  <br />
+  <button (click)="mostrarHtml(1)" class="btn btn-dark" style="margin-left: 40%">
+    Crear Proyecto
+  </button>
+  <br />
+  <div class="container-fluid" style="margin-left: 30%">
+    <br />
+    <form *ngIf="mostrarCrear" [formGroup]="formularioCrear">
+      <label>Ingrese Material</label>
+      <input type="text" formControlName="id_tipo_material" />
+      <br /><br />
+      <label>Ingrese produccion</label>
+      <input type="text" formControlName="id_produccion" />
+      <br /><br />
+      <label>Ingrese Descripcion</label>
+      <input type="text" formControlName="descrip_proyecto" />
+      <br /><br />
+      <button
+        [disabled]="formularioCrear.invalid"
+        (click)="crearProyecto()"
+        class="btn btn-danger"
+        style="margin-left: 10%"
+      >
+        Subir
+      </button>
+      <br /><br />
+      <button
+        (click)="mostrarHtml(1)"
+        class="btn btn-dark"
+        style="margin-left: 10%"
+      >
+        Ocultar
+      </button>
+      <br /><br />
+    </form>
+  </div>
+</div>
+
+
+<br /><br />
+
+<div class="actualizar">
+  <br>
+  <button
+    (click)="mostrarHtml(2)"
+    class="btn btn-dark"
+    style="margin-left: 40%"
+  >
+    Actualizar
+  </button>
+  <br />
+  <div class="container-fluid" style="margin-left: 30%">
+    <br />
+    <form *ngIf="mostrarActualizar" [formGroup]="formularioActualizar">
+      id de la Proyecto a actualizar
+      <select
+        class="dropdown"
+        formControlName="id_persona"
+        (click)="consultarProyecto(2)"
+      >
+        <option value="value1">Id a buscar</option>
+        <option
+          *ngFor="let Proyecto of comboListaProyecto"
+          [value]="Proyecto.id_persona"
+        >
+          {{ Proyecto.id_persona }} -
+          {{ Proyecto.nombre_1 }}
+        </option>
+      </select>
+      <br /><br />
+      <label>Ingrese Material</label>
+      <input type="text" formControlName="id_tipo_material" />
+      <br /><br />
+      <label>Ingrese produccion</label>
+      <input type="text" formControlName="id_produccion" />
+      <br /><br />
+      <label>Ingrese Descripcion</label>
+      <input type="text" formControlName="descrip_proyecto" />
+      <br /><br />
+      <button
+        [disabled]="formularioActualizar.invalid"
+        (click)="actualizarProyecto()"
+        class="btn btn-danger"
+      >
+        Subir
+      </button>
+      <br /><br />
+      <button (click)="mostrarHtml(2)" class="btn btn-dark">Ocultar</button>
+      <br><br>
+    </form>
+  </div>
+</div>
+

@@ -13,6 +13,7 @@ import { PersonaService } from "./services/persona.service";
 import {HttpClientModule} from "@angular/common/http";
 import {RouterModule} from "@angular/router";
 import {HttpModule} from "@angular/http";
+import { ProyectoComponent } from './pages/proyecto/proyecto.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {HttpModule} from "@angular/http";
     NavbarComponent,
     InicioComponent,
     FooterComponent,
-    PersonaComponent
+    PersonaComponent,
+    ProyectoComponent
   ],
   imports: [
     BrowserModule,

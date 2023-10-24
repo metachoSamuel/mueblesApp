@@ -1,0 +1,207 @@
+<div class="lista">
+  <h1>Lista Personas</h1>
+
+  <form (ngSubmit)="consultarPersona(1)" [formGroup]="ListaPersonas">
+    <button type="submit" style="margin-left: 30%">Mostrar Asistencias</button>
+    <button (click)="limpiarLista()" style="margin-left: 30px">Limpiar</button>
+
+    <br /><br />
+
+    <h2 style="margin-left: 10%">{{ TituloPersonas }}</h2>
+    <table>
+      <thead>
+      <th>{{ TablaPersona[0] }}</th>
+      <th>{{ TablaPersona[1] }}</th>
+      <th>{{ TablaPersona[2] }}</th>
+      <th>{{ TablaPersona[3] }}</th>
+      <th>{{ TablaPersona[4] }}</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let persona of Personas">
+        <th>{{ persona.id_persona }}</th>
+        <th>{{ persona.apellido_1 }} {{ persona.apellido_2 }}</th>
+        <th>{{ persona.nombre_1 }} {{ persona.nombre_2 }}</th>
+        <th>{{ persona.no_documento }}</th>
+        <th *ngIf="persona.tipo_persona == 'e'">Estudiante</th>
+        <th *ngIf="persona.tipo_persona == 'd'">Docente</th>
+      </tr>
+      </tbody>
+    </table>
+  </form>
+</div>
+
+<br /><br />
+
+<!-- para mostrar el un solo Tipo de Documento -->
+<div class="buscar">
+  <h2 style="margin-left: 30%">Mostramos la Persona seleccionada:</h2>
+
+  <form
+    (ngSubmit)="buscarPersona()"
+    [formGroup]="filtrarPersona"
+    style="margin-left: 30%"
+  >
+    Seleccione persona
+    <select
+      class="dropdown"
+      formControlName="combofiltro"
+      (click)="consultarPersona(2)"
+    >
+      <option value="value1">Persona a buscar</option>
+      <option
+        *ngFor="let persona of comboListaPersona"
+        [value]="persona.id_persona"
+      >
+        {{ persona.id_persona }} -
+        {{ persona.nombre_1 }}
+      </option>
+    </select>
+
+    <br /><br />
+
+    <button type="submit" style="margin-right: 30px">Buscar Persona</button>
+    <button (click)="limpiarLista()" style="margin-right: 30px">Limpiar</button>
+  </form>
+
+  <ul>
+    <h2>{{ TituloPersona }}</h2>
+
+    <table class="tabBuscar">
+      <thead class="Colb">
+      <th class="b">{{ TabBusPersona[0] }}</th>
+      <th class="b">{{ TabBusPersona[1] }}</th>
+      <th class="b">{{ TabBusPersona[2] }}</th>
+      <th class="b">{{ TabBusPersona[3] }}</th>
+      <th class="b">{{ TabBusPersona[4] }}</th>
+      </thead>
+
+      <tbody class="Filb">
+      <tr class="b" *ngFor="let persona of MiPersona">
+        <th>{{ persona.id_persona }}</th>
+        <th>{{ persona.apellido_1 }} {{ persona.apellido_2 }}</th>
+        <th>{{ persona.nombre_1 }} {{ persona.nombre_2 }}</th>
+        <th>{{ persona.no_documento }}</th>
+        <th *ngIf="persona.tipo_persona == 'e'">Estudiante</th>
+        <th *ngIf="persona.tipo_persona == 'd'">Docente</th>
+      </tr>
+      </tbody>
+    </table>
+  </ul>
+</div>
+
+<br /><br />
+
+<div class="crear">
+  <br />
+  <button
+    (click)="mostrarHtml(1)"
+    class="btn btn-dark"
+    style="margin-left: 40%"
+  >
+    Crear Persona
+  </button>
+  <br />
+  <div class="container-fluid" style="margin-left: 30%">
+    <br />
+    <form *ngIf="mostrarCrear" [formGroup]="formularioCrear">
+      <label for="">Ingrese Primer nombre</label>
+      <input type="text" formControlName="nombre_1" />
+      <br /><br />
+      <label for="">Ingrese Primer nombre</label>
+      <input type="text" formControlName="nombre_2" />
+      <br /><br />
+      <label for="">Ingrese Primer nombre</label>
+      <input type="text" formControlName="apellido_1" />
+      <br /><br />
+      <label for="">Ingrese Primer nombre</label>
+      <input type="text" formControlName="apellido_2" />
+      <br /><br />
+      <label for="">Ingrese Primer nombre</label>
+      <input type="text" formControlName="no_documento" />
+      <br /><br />
+      <label for="">Ingrese Primer nombre</label>
+      <input type="text" formControlName="tipo_persona" />
+      <br /><br />
+      <button
+        [disabled]="formularioCrear.invalid"
+        (click)="crearPersona()"
+        class="btn btn-danger"
+        style="margin-left: 10%"
+      >
+        Subir
+      </button>
+      <br /><br />
+      <button
+        (click)="mostrarHtml(1)"
+        class="btn btn-dark"
+        style="margin-left: 10%"
+      >
+        Ocultar
+      </button>
+      <br /><br />
+    </form>
+  </div>
+</div>
+
+<br /><br />
+
+<div class="actualizar">
+  <br>
+  <button
+    (click)="mostrarHtml(2)"
+    class="btn btn-dark"
+    style="margin-left: 40%"
+  >
+    Actualizar
+  </button>
+  <br />
+  <div class="container-fluid" style="margin-left: 30%">
+    <br />
+    <form *ngIf="mostrarActualizar" [formGroup]="formularioActualizar">
+      id de la persona a actualizar
+      <select
+        class="dropdown"
+        formControlName="id_persona"
+        (click)="consultarPersona(2)"
+      >
+        <option value="value1">Id a buscar</option>
+        <option
+          *ngFor="let persona of comboListaPersona"
+          [value]="persona.id_persona"
+        >
+          {{ persona.id_persona }} -
+          {{ persona.nombre_1 }}
+        </option>
+      </select>
+      <br /><br />
+      <label for="">Ingrese Primer nombre</label>
+      <input type="text" formControlName="nombre_1" />
+      <br /><br />
+      <label for="">Ingrese Primer nombre</label>
+      <input type="text" formControlName="nombre_2" />
+      <br /><br />
+      <label for="">Ingrese Primer nombre</label>
+      <input type="text" formControlName="apellido_1" />
+      <br /><br />
+      <label for="">Ingrese Primer nombre</label>
+      <input type="text" formControlName="apellido_2" />
+      <br /><br />
+      <label for="">Ingrese Primer nombre</label>
+      <input type="text" formControlName="no_documento" />
+      <br /><br />
+      <label for="">Ingrese Primer nombre</label>
+      <input type="text" formControlName="tipo_persona" />
+      <br /><br />
+      <button
+        [disabled]="formularioActualizar.invalid"
+        (click)="actualizarPersona()"
+        class="btn btn-danger"
+      >
+        Subir
+      </button>
+      <br /><br />
+      <button (click)="mostrarHtml(2)" class="btn btn-dark">Ocultar</button>
+      <br><br>
+    </form>
+  </div>
+</div>

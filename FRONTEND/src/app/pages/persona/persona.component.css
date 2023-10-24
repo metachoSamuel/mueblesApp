@@ -1,0 +1,59 @@
+table{
+  width: 70%;
+  text-align: center;
+  text-transform: uppercase;
+  margin-left: 15%;
+}
+
+thead{
+  background-color: #7544c3;
+}
+
+tbody th{
+  border-color: rgba(0, 20, 87);
+  font-weight: lighter;
+  color: rgb(255, 255, 255);
+}
+tbody tr{
+  width: 50px;
+  background-color: #212529;
+}
+select{
+  text-transform: uppercase;
+  margin-left: 5px;
+  width: 280px;
+  border-color: rgba(0, 20, 87);
+  border-radius: 5px;
+}
+button{
+  padding: 7px;
+  background-color: #550c5b;
+  color: #fff;
+  border-style: none;
+  border-radius: 100px;
+  width: 280px;
+}
+button:hover{
+  background-color: black;
+}
+input {
+  text-transform: uppercase;
+  margin-left: 5px;
+  width: 280px;
+  border-color: rgba(0, 20, 87, 0.7);
+  border-radius: 5px;
+}
+h1,
+h2 {
+  font-style: oblique;
+  font-weight: bolder;
+}
+
+h1 {
+  margin-left: 40%;
+}
+
+.lista, .buscar,.crear,.actualizar{
+  background-color: #d9b3f3;
+  border-radius: 50px;
+}

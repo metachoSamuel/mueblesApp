@@ -2,6 +2,8 @@ import {Component, OnInit, Input, Output} from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { PersonaService } from "../../services/persona.service";
+
 @Component({
   selector: 'app-persona',
   templateUrl: './persona.component.html',
